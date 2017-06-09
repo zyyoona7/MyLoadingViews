@@ -12,7 +12,7 @@ import android.view.View;
 public class BaseView extends View {
 
     public BaseView(Context context) {
-        super(context);
+        this(context,null);
     }
 
     public BaseView(Context context, @Nullable AttributeSet attrs) {

@@ -51,8 +51,7 @@ public class IndicatorLoadingView extends BaseView {
     private boolean isAround = false;
 
     public IndicatorLoadingView(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public IndicatorLoadingView(Context context, @Nullable AttributeSet attrs) {
@@ -79,7 +78,6 @@ public class IndicatorLoadingView extends BaseView {
         mColorList.add(0x15000000);
         mColorList.add(0x00000000);
         mLineWidth = dp2px(2);
-        Log.e(TAG, "init: " + getNewColor(mColorList.getLast(), 0xFFFFFF));
     }
 
     @Override
@@ -270,7 +268,7 @@ public class IndicatorLoadingView extends BaseView {
      * @return
      */
     private int getNewColor(int oldColor, int color) {
-        int newColor = 0;
+        int newColor;
         int alpha = Math.round(Color.alpha(oldColor));
         int r = Color.red(color);
         int g = Color.green(color);
