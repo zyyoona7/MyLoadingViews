@@ -4,9 +4,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.zyyoona7.myloadingviews.indicator.IndicatorActivity;
+import com.zyyoona7.myloadingviews.ring.RingActivity;
 
 public class MainActivity extends BaseActivity {
     private Button mJuHuaBtn;
+    private Button mRingBtn;
 
     @Override
     protected int getLayoutID() {
@@ -21,7 +23,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
         mJuHuaBtn = (Button) findViewById(R.id.btn_juhua);
-
+        mRingBtn = (Button) findViewById(R.id.btn_ring);
     }
 
     @Override
@@ -30,6 +32,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 goTo(IndicatorActivity.class);
+            }
+        });
+
+        mRingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(RingActivity.class);
             }
         });
     }

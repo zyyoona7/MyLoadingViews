@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".indicator.IndicatorActivity">
         </activity>
+        <activity android:name=".ring.RingActivity">
+        </activity>
     </application>
 
 </manifest>

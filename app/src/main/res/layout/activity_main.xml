@@ -5,13 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.zyyoona7.myloadingviews.MainActivity">
 
 
     <Button
+        android:id="@+id/btn_juhua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="菊花Loading"
-        android:id="@+id/btn_juhua"/>
+        android:text="菊花Loading"/>
+
+    <Button
+        android:id="@+id/btn_ring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="旋转环形Loading"/>
 
 </LinearLayout>
