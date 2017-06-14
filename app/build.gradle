@@ -23,7 +23,6 @@ dependencies {
     compile project(':loading')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
     compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
 }
