@@ -11,20 +11,16 @@ import android.util.AttributeSet;
 
 /**
  * Created by zyyoona7 on 2017/6/13.
+ * 圆环的loading，Android版腾讯体育下拉刷新的效果
  */
 
-public class RotateRingLoadingView extends BaseView {
-
-    public static final int PROGRESS = 1;
-    public static final int ROTATE = 2;
+public class RotateRingLoadingView extends BaseProgressView {
 
     private RectF mRectF;
 
     private Paint mPaint;
 
-    private ValueAnimator mValueAnimator;
-
-    private float degrees=0f;
+    private float degrees = 0f;
 
     public RotateRingLoadingView(Context context) {
         this(context, null);
@@ -32,6 +28,10 @@ public class RotateRingLoadingView extends BaseView {
 
     public RotateRingLoadingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    protected void initPaint() {
         init();
     }
 
@@ -64,33 +64,65 @@ public class RotateRingLoadingView extends BaseView {
             //有边距，否则圆弧会不完全
             mRectF = new RectF(-x + circleSpacing, -y + circleSpacing, x - circleSpacing, y - circleSpacing);
         }
-        //-degrees逆时针旋转，degrees顺时针
-        canvas.rotate(-degrees);
-        canvas.drawArc(mRectF, 300, -330, false, mPaint);
-    }
-
-    public void startAnim() {
-        mValueAnimator = ValueAnimator.ofFloat(0, 360);
-        mValueAnimator.setDuration(500);
-        mValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        mValueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                degrees = (float) animation.getAnimatedValue();
-                postInvalidate();
-            }
-        });
-        mValueAnimator.start();
-    }
-
-    public void stopAnim(){
-        if (mValueAnimator != null) {
-            clearAnimation();
-            mValueAnimator.setRepeatCount(0);
-            mValueAnimator.end();
-            mValueAnimator.cancel();
-            mValueAnimator = null;
+        if (mCurrentMode == MODE_PROGRESS) {
+            //负角度逆时针画，正角度顺时针画
+            canvas.drawArc(mRectF, 300, -mCurrentProgress, false, mPaint);
+        } else {
+            //-degrees逆时针旋转，degrees顺时针
+            canvas.rotate(-degrees);
+            canvas.drawArc(mRectF, 300, -330, false, mPaint);
         }
     }
+
+    /**
+     * 设置圆环的宽度
+     *
+     * @param width dp
+     */
+    public void setStrokeWidth(float width) {
+        mPaint.setStrokeWidth(dp2px(width));
+        postInvalidate();
+    }
+
+    @Override
+    public void setColor(int color) {
+        mPaint.setColor(color);
+        postInvalidate();
+    }
+
+    @Override
+    public void startAnim() {
+        stopAnim();
+        setMode(MODE_ROTATE);
+        startAnim(0, 360, 500);
+    }
+
+    @Override
+    public void startAnim(long time) {
+        stopAnim();
+        setMode(MODE_ROTATE);
+        startAnim(0, 360, time);
+    }
+
+    @Override
+    protected int getRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
+
+    @Override
+    protected int getRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+
+    @Override
+    protected void onAnimatorUpdate(ValueAnimator animator) {
+        degrees = (float) animator.getAnimatedValue();
+        postInvalidate();
+    }
+
+    @Override
+    protected int setMaxProgress() {
+        return 330;
+    }
+
 }

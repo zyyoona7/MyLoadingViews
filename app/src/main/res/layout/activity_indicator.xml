@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zyyoona7.myloadingviews.indicator.IndicatorActivity">
+    tools:context="com.zyyoona7.myloadingviews.progress.activity.IndicatorActivity">
 
     <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
         android:id="@+id/tfl_indicator"

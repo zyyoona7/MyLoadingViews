@@ -1,24 +1,116 @@
 package com.zyyoona7.loading.view;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 /**
  * Created by zyyoona7 on 2017/6/8.
  */
 
-public class BaseView extends View {
+public abstract class BaseView extends View {
+
+    protected ValueAnimator mValueAnimator;
 
     public BaseView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public BaseView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initPaint();
     }
 
+    /**
+     * 开始动画
+     *
+     * @param startF
+     * @param endF
+     * @param time
+     */
+    protected void startAnim(float startF, final float endF, long time) {
+        mValueAnimator = ValueAnimator.ofFloat(startF, endF);
+        mValueAnimator.setDuration(time);
+        mValueAnimator.setInterpolator(new LinearInterpolator());
+        if (ValueAnimator.RESTART == getRepeatMode()) {
+            mValueAnimator.setRepeatMode(ValueAnimator.RESTART);
+        } else if (ValueAnimator.REVERSE == getRepeatMode()) {
+            mValueAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        }
+        mValueAnimator.setRepeatCount(getRepeatCount());
+        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                onAnimatorUpdate(animation);
+            }
+        });
+
+        if (!mValueAnimator.isRunning()) {
+            mValueAnimator.start();
+        }
+    }
+
+    /**
+     * 停止动画
+     */
+    public void stopAnim() {
+        if (mValueAnimator != null) {
+            clearAnimation();
+
+            mValueAnimator.setRepeatCount(0);
+            mValueAnimator.cancel();
+            mValueAnimator.end();
+
+        }
+    }
+
+    /**
+     * 初始化画笔
+     */
+    protected abstract void initPaint();
+
+    /**
+     * 设置颜色
+     *
+     * @param color
+     */
+    public abstract void setColor(int color);
+
+    /**
+     * 开始动画
+     */
+    public abstract void startAnim();
+
+    /**
+     * 开始动画 可以设置动画时长
+     *
+     * @param time
+     */
+    public abstract void startAnim(long time);
+
+    /**
+     * 获取动画重复次数
+     *
+     * @return
+     */
+    protected abstract int getRepeatCount();
+
+    /**
+     * 获取动画重复模式
+     *
+     * @return
+     */
+    protected abstract int getRepeatMode();
+
+    /**
+     * 动画更新监听
+     *
+     * @param animator
+     */
+    protected abstract void onAnimatorUpdate(ValueAnimator animator);
 
     /**
      * dp转px

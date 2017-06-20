@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".indicator.IndicatorActivity">
+        <activity android:name=".progress.activity.IndicatorActivity">
         </activity>
-        <activity android:name=".ring.RingActivity">
+        <activity android:name=".progress.activity.RingActivity">
         </activity>
     </application>
 

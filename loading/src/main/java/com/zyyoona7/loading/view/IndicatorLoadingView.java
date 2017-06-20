@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.animation.LinearInterpolator;
 
 import java.util.Collections;
@@ -20,24 +19,14 @@ import java.util.LinkedList;
  * 仿iOS的菊花loading
  */
 
-public class IndicatorLoadingView extends BaseView {
+public class IndicatorLoadingView extends BaseProgressView {
 
     private static final String TAG = "IndicatorLoadingView";
-    //转圈模式
-    public static final int TURN_AROUND = 0;
-    //进度模式
-    public static final int PROGRESS = 1;
 
     //画笔
     private Paint mPaint;
     //矩形
     private RectF mRectF;
-
-    private ValueAnimator mValueAnimator;
-    //当前进度
-    private int mCurrentProgress = 1;
-    //当前模式
-    private int mCurrentMode = 0;
 
     //线宽
     private int mLineWidth = 4;
@@ -98,7 +87,7 @@ public class IndicatorLoadingView extends BaseView {
             mRectF = new RectF(getWidth() / 2 - mLineWidth / 2, 0, getWidth() / 2 + mLineWidth / 2, getHeight() / 4);
         }
 
-        if (mCurrentMode == PROGRESS) {
+        if (mCurrentMode == MODE_PROGRESS) {
             mPaint.setColor(mColorList.get(0));
             for (int i = 0; i < mCurrentProgress; i++) {
                 //使用圆角矩形，使得更圆润
@@ -130,7 +119,7 @@ public class IndicatorLoadingView extends BaseView {
      */
     public void setLineWidth(int lineWidth) {
         this.mLineWidth = dp2px(lineWidth);
-        invalidate();
+        postInvalidate();
     }
 
     /**
@@ -138,98 +127,79 @@ public class IndicatorLoadingView extends BaseView {
      *
      * @param color
      */
+    @Override
     public void setColor(int color) {
         for (int i = 0; i < mColorList.size(); i++) {
             mColorList.set(i, getNewColor(mColorList.get(i), color));
         }
-        invalidate();
+        postInvalidate();
     }
 
-    /**
-     * 设置模式
-     *
-     * @param mode
-     */
-    public void setMode(int mode) {
-        this.mCurrentMode = mode;
-    }
 
-    /**
-     * 设置当前进度
-     *
-     * @param currentProgress 1-12
-     */
-    public void setCurrentProgress(int currentProgress) {
-        mCurrentMode = PROGRESS;
-        if (currentProgress > 12) {
-            currentProgress = 12;
-        }
-        this.mCurrentProgress = currentProgress;
-        invalidate();
+    @Override
+    protected int setMaxProgress() {
+        return 12;
     }
 
     /**
      * 开始旋转
+     *
+     * @param start
+     * @param end
+     * @param time
      */
+    private void startAnim(int start, final int end, long time) {
+        isAround = true;
+        mCurrentMode = MODE_ROTATE;
+        mValueAnimator = ValueAnimator.ofInt(start, end);
+        mValueAnimator.setDuration(time);
+        mValueAnimator.setRepeatCount(getRepeatCount());
+        mValueAnimator.setRepeatMode(ValueAnimator.RESTART);
+        mValueAnimator.setInterpolator(new LinearInterpolator());
+        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                if (currentValue != (int) (animation.getAnimatedValue())) {
+                    onAnimatorUpdate(animation);
+                }
+            }
+        });
+        mValueAnimator.start();
+    }
+
+    @Override
+    protected void initPaint() {
+//        init();
+    }
+
+    @Override
     public void startAnim() {
-        isAround = true;
-        mCurrentMode = TURN_AROUND;
-        mValueAnimator = ValueAnimator.ofInt(0, 12);
-        mValueAnimator.setDuration(1000);
-        mValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        mValueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        mValueAnimator.setInterpolator(new LinearInterpolator());
-        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                if (currentValue != (int) (animation.getAnimatedValue())) {
-                    currentValue = (int) (animation.getAnimatedValue());
-                    invalidate();
-                }
-            }
-        });
-        mValueAnimator.start();
+        stopAnim();
+        startAnim(0,12,1000);
     }
 
-    /**
-     * 开始旋转
-     *
-     * @param duration 设置转1圈的动画时间
-     */
-    public void startAnim(int duration) {
-        isAround = true;
-        mCurrentMode = TURN_AROUND;
-        mValueAnimator = ValueAnimator.ofInt(0, 12);
-        mValueAnimator.setDuration(duration);
-        mValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        mValueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        mValueAnimator.setInterpolator(new LinearInterpolator());
-        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                if (currentValue != (int) (animation.getAnimatedValue())) {
-                    currentValue = (int) (animation.getAnimatedValue());
-                    invalidate();
-                }
-            }
-        });
-        mValueAnimator.start();
+    @Override
+    public void startAnim(long time) {
+        stopAnim();
+        startAnim(0,12,time);
     }
 
-    /**
-     * 退出旋转
-     */
-    public void stopAnim() {
-        isAround = false;
-        currentValue = 0;
-        if (mValueAnimator != null) {
-            clearAnimation();
-            mValueAnimator.setRepeatCount(0);
-            mValueAnimator.end();
-            mValueAnimator.cancel();
-            mValueAnimator = null;
-        }
+    @Override
+    protected int getRepeatCount() {
+        return ValueAnimator.INFINITE;
     }
+
+    @Override
+    protected int getRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+
+    @Override
+    protected void onAnimatorUpdate(ValueAnimator animator) {
+        currentValue = (int) (animator.getAnimatedValue());
+        postInvalidate();
+    }
+
 
     /**
      * 重置color的排序

@@ -3,8 +3,8 @@ package com.zyyoona7.myloadingviews;
 import android.view.View;
 import android.widget.Button;
 
-import com.zyyoona7.myloadingviews.indicator.IndicatorActivity;
-import com.zyyoona7.myloadingviews.ring.RingActivity;
+import com.zyyoona7.myloadingviews.progress.activity.IndicatorActivity;
+import com.zyyoona7.myloadingviews.progress.activity.RingActivity;
 
 public class MainActivity extends BaseActivity {
     private Button mJuHuaBtn;
