@@ -1,4 +1,4 @@
-package com.zyyoona7.loading.view;
+package com.zyyoona7.loading.view.progress;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

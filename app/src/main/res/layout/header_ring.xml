@@ -5,7 +5,7 @@
               android:gravity="center"
               android:orientation="vertical">
 
-    <com.zyyoona7.loading.view.RotateRingLoadingView
+    <com.zyyoona7.loading.view.progress.RotateRingLoadingView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/rlv_header"/>

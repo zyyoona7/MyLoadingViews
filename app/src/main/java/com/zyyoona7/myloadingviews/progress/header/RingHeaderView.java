@@ -10,8 +10,7 @@ import android.widget.FrameLayout;
 
 import com.lcodecore.tkrefreshlayout.IHeaderView;
 import com.lcodecore.tkrefreshlayout.OnAnimEndListener;
-import com.zyyoona7.loading.view.IndicatorLoadingView;
-import com.zyyoona7.loading.view.RotateRingLoadingView;
+import com.zyyoona7.loading.view.progress.RotateRingLoadingView;
 import com.zyyoona7.myloadingviews.R;
 
 /**

@@ -1,8 +1,10 @@
-package com.zyyoona7.loading.view;
+package com.zyyoona7.loading.view.progress;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import com.zyyoona7.loading.view.BaseView;
 
 /**
  * Created by zyyoona7 on 2017/6/14.

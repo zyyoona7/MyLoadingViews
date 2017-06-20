@@ -1,4 +1,4 @@
-package com.zyyoona7.loading.view;
+package com.zyyoona7.loading.view.progress;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -16,7 +16,7 @@ import java.util.LinkedList;
 
 /**
  * Created by zyyoona7 on 2017/6/8.
- * 仿iOS的菊花loading
+ * 仿iOS的菊花loading，iOS版邮件下拉刷新效果
  */
 
 public class IndicatorLoadingView extends BaseProgressView {
@@ -175,13 +175,13 @@ public class IndicatorLoadingView extends BaseProgressView {
     @Override
     public void startAnim() {
         stopAnim();
-        startAnim(0,12,1000);
+        startAnim(0, 12, 1000);
     }
 
     @Override
     public void startAnim(long time) {
         stopAnim();
-        startAnim(0,12,time);
+        startAnim(0, 12, time);
     }
 
     @Override
