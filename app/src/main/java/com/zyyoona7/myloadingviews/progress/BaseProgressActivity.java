@@ -35,7 +35,7 @@ public abstract class BaseProgressActivity extends BaseActivity {
         mAdapter = new RecyclerAdapter();
         List<String> list = new ArrayList<>(1);
         for (int i = 0; i < 15; i++) {
-            list.add("菊花残，满腚伤");
+            list.add("Just Do IT");
         }
         mAdapter.setNewData(list);
     }

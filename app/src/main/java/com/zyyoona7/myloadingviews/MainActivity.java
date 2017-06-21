@@ -3,12 +3,14 @@ package com.zyyoona7.myloadingviews;
 import android.view.View;
 import android.widget.Button;
 
+import com.zyyoona7.myloadingviews.progress.activity.AliPayActivity;
 import com.zyyoona7.myloadingviews.progress.activity.IndicatorActivity;
 import com.zyyoona7.myloadingviews.progress.activity.RingActivity;
 
 public class MainActivity extends BaseActivity {
     private Button mJuHuaBtn;
     private Button mRingBtn;
+    private Button mAliPayBtn;
 
     @Override
     protected int getLayoutID() {
@@ -24,6 +26,7 @@ public class MainActivity extends BaseActivity {
     protected void initViews() {
         mJuHuaBtn = (Button) findViewById(R.id.btn_juhua);
         mRingBtn = (Button) findViewById(R.id.btn_ring);
+        mAliPayBtn = (Button) findViewById(R.id.btn_alipay);
     }
 
     @Override
@@ -39,6 +42,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 goTo(RingActivity.class);
+            }
+        });
+
+        mAliPayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(AliPayActivity.class);
             }
         });
     }

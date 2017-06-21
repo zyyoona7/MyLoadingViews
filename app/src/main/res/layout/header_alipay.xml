@@ -5,8 +5,8 @@
               android:gravity="center"
               android:orientation="vertical">
 
-    <com.zyyoona7.loading.view.progress.RotateRingLoadingView
+    <com.zyyoona7.loading.view.progress.AliPayLoadingView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/rlv_header"/>
+        android:id="@+id/alv_header"/>
 </LinearLayout>

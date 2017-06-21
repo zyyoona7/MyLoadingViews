@@ -51,7 +51,7 @@ public class IndicatorLoadingView extends BaseProgressView {
     private void init() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(DEFAULT_COLOR);
         mPaint.setStyle(Paint.Style.FILL);
         mColorList = new LinkedList<>();
         mColorList.add(0xE7000000);
@@ -66,16 +66,7 @@ public class IndicatorLoadingView extends BaseProgressView {
         mColorList.add(0x2A000000);
         mColorList.add(0x15000000);
         mColorList.add(0x00000000);
-        mLineWidth = dp2px(2);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-        width = width > height ? height : width;
-        setMeasuredDimension(width, width);
+        mLineWidth = dp2px(DEFAULT_PAINT_WIDTH);
     }
 
     @Override

@@ -2,6 +2,9 @@ package com.zyyoona7.loading.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -13,6 +16,13 @@ import android.view.animation.LinearInterpolator;
 
 public abstract class BaseView extends View {
 
+    private static final int DEFAULT_WIDTH=50;
+    private static final int DEFAULT_HEIGHT=50;
+    //默认颜色
+    protected static final int DEFAULT_COLOR= Color.BLACK;
+    //默认画笔宽度
+    protected static final int DEFAULT_PAINT_WIDTH=2;
+
     protected ValueAnimator mValueAnimator;
 
     public BaseView(Context context) {
@@ -22,6 +32,68 @@ public abstract class BaseView extends View {
     public BaseView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initPaint();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(measureWidthSize(widthMeasureSpec),measureHeightSize(heightMeasureSpec));
+    }
+
+    /**
+     * measure width
+     * @param measureSpec spec
+     * @return width
+     */
+    private int measureWidthSize(int measureSpec) {
+        int defSize = dp2px(DEFAULT_WIDTH);
+        int specSize = MeasureSpec.getSize(measureSpec);
+        int specMode = MeasureSpec.getMode(measureSpec);
+
+        int result = 0;
+        switch (specMode) {
+            case MeasureSpec.UNSPECIFIED:
+            case MeasureSpec.AT_MOST:
+                result = Math.min(defSize, specSize);
+                break;
+            case MeasureSpec.EXACTLY:
+                result = specSize;
+                break;
+        }
+        return result;
+    }
+
+    /**
+     * measure height
+     * @param measureSpec spec
+     * @return height
+     */
+    private int measureHeightSize(int measureSpec) {
+        int defSize = dp2px(DEFAULT_HEIGHT);
+        int specSize = MeasureSpec.getSize(measureSpec);
+        int specMode = MeasureSpec.getMode(measureSpec);
+
+        int result = 0;
+        switch (specMode) {
+            case MeasureSpec.UNSPECIFIED:
+            case MeasureSpec.AT_MOST:
+                result = Math.min(defSize, specSize);
+                break;
+            case MeasureSpec.EXACTLY:
+                result = specSize;
+                break;
+        }
+        return result;
+    }
+
+    @Override
+    protected void onVisibilityChanged(@NonNull View changedView,int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        if (visibility == GONE || visibility == INVISIBLE) {
+            stopAnim();
+        } else {
+            startAnim();
+        }
     }
 
     /**

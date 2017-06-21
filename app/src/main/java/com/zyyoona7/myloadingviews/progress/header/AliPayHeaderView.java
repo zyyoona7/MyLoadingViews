@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.lcodecore.tkrefreshlayout.IHeaderView;
 import com.lcodecore.tkrefreshlayout.OnAnimEndListener;
+import com.zyyoona7.loading.view.progress.AliPayLoadingView;
 import com.zyyoona7.loading.view.progress.RotateRingLoadingView;
 import com.zyyoona7.myloadingviews.R;
 
@@ -17,33 +18,32 @@ import com.zyyoona7.myloadingviews.R;
  * Created by zyyoona7 on 2017/6/9.
  */
 
-public class RingHeaderView extends FrameLayout implements IHeaderView {
+public class AliPayHeaderView extends FrameLayout implements IHeaderView {
 
-    private static final String TAG = "IndicatorHeaderView";
 
-    private RotateRingLoadingView mLoadingView;
+    private AliPayLoadingView mLoadingView;
 
-    public RingHeaderView(@NonNull Context context) {
+    public AliPayHeaderView(@NonNull Context context) {
         this(context, null);
     }
 
-    public RingHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public AliPayHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
     private void init(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.header_ring, this);
-        mLoadingView = (RotateRingLoadingView) findViewById(R.id.rlv_header);
+        LayoutInflater.from(context).inflate(R.layout.header_alipay, this);
+        mLoadingView = (AliPayLoadingView) findViewById(R.id.alv_header);
     }
 
     /**
      * 设置颜色
-     *
-     * @param color
+     * @param circleColor
+     * @param arcColor
      */
-    public void setColor(int color) {
-        mLoadingView.setColor(color);
+    public void setColor(int circleColor,int arcColor) {
+        mLoadingView.setColor(circleColor,arcColor);
     }
 
     @Override
@@ -53,8 +53,10 @@ public class RingHeaderView extends FrameLayout implements IHeaderView {
 
     @Override
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
-        if (fraction <= 1) {
+        if (fraction <1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
+        }else {
+            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
         }
     }
 

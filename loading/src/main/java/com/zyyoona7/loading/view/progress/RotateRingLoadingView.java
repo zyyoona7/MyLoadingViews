@@ -38,18 +38,9 @@ public class RotateRingLoadingView extends BaseProgressView {
     private void init() {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(dp2px(2));
-        mPaint.setColor(Color.RED);
+        mPaint.setStrokeWidth(dp2px(DEFAULT_PAINT_WIDTH));
+        mPaint.setColor(DEFAULT_COLOR);
         mPaint.setAntiAlias(true);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-        width = width > height ? height : width;
-        setMeasuredDimension(width, width);
     }
 
     @Override

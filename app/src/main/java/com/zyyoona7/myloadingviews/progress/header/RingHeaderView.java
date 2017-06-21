@@ -53,8 +53,10 @@ public class RingHeaderView extends FrameLayout implements IHeaderView {
 
     @Override
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
-        if (fraction <= 1) {
+        if (fraction < 1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
+        }else {
+            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
         }
     }
 
