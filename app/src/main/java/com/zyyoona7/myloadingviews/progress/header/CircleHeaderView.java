@@ -10,29 +10,30 @@ import android.widget.FrameLayout;
 
 import com.lcodecore.tkrefreshlayout.IHeaderView;
 import com.lcodecore.tkrefreshlayout.OnAnimEndListener;
-import com.zyyoona7.loading.view.progress.RotateRingLoadingView;
+import com.zyyoona7.loading.view.progress.CircleLoadingView;
 import com.zyyoona7.myloadingviews.R;
 
 /**
- * Created by zyyoona7 on 2017/6/9.
+ * Created by zyyoona7 on 2017/6/21.
  */
 
-public class RingHeaderView extends FrameLayout implements IHeaderView {
+public class CircleHeaderView extends FrameLayout implements IHeaderView {
 
-    private RotateRingLoadingView mLoadingView;
 
-    public RingHeaderView(@NonNull Context context) {
+    private CircleLoadingView mLoadingView;
+
+    public CircleHeaderView(@NonNull Context context) {
         this(context, null);
     }
 
-    public RingHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CircleHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
     private void init(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.header_ring, this);
-        mLoadingView = (RotateRingLoadingView) findViewById(R.id.rlv_header);
+        LayoutInflater.from(context).inflate(R.layout.header_circle, this);
+        mLoadingView = (CircleLoadingView) findViewById(R.id.clv_header);
     }
 
     /**
@@ -52,16 +53,16 @@ public class RingHeaderView extends FrameLayout implements IHeaderView {
     @Override
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
         if (fraction < 1) {
-            mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
-        }else {
-            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            mLoadingView.setScale(fraction);
+        } else {
+            mLoadingView.setScale(1);
         }
     }
 
     @Override
     public void onPullReleasing(float fraction, float maxHeadHeight, float headHeight) {
         if (fraction < 1) {
-            mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
+            mLoadingView.setScale(fraction);
         }
     }
 

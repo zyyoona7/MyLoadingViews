@@ -15,7 +15,7 @@ import com.zyyoona7.loading.view.progress.RotateRingLoadingView;
 import com.zyyoona7.myloadingviews.R;
 
 /**
- * Created by zyyoona7 on 2017/6/9.
+ * Created by zyyoona7 on 2017/6/21.
  */
 
 public class AliPayHeaderView extends FrameLayout implements IHeaderView {

@@ -86,15 +86,15 @@ public abstract class BaseView extends View {
         return result;
     }
 
-    @Override
-    protected void onVisibilityChanged(@NonNull View changedView,int visibility) {
-        super.onVisibilityChanged(changedView, visibility);
-        if (visibility == GONE || visibility == INVISIBLE) {
-            stopAnim();
-        } else {
-            startAnim();
-        }
-    }
+//    @Override
+//    protected void onVisibilityChanged(@NonNull View changedView,int visibility) {
+//        super.onVisibilityChanged(changedView, visibility);
+//        if (visibility == GONE || visibility == INVISIBLE) {
+//            stopAnim();
+//        } else {
+//            startAnim();
+//        }
+//    }
 
     /**
      * 开始动画

@@ -10,29 +10,31 @@ import android.widget.FrameLayout;
 
 import com.lcodecore.tkrefreshlayout.IHeaderView;
 import com.lcodecore.tkrefreshlayout.OnAnimEndListener;
-import com.zyyoona7.loading.view.progress.RotateRingLoadingView;
+import com.zyyoona7.loading.view.progress.AliPayLoadingView;
+import com.zyyoona7.loading.view.progress.TaobaoLoadingView;
 import com.zyyoona7.myloadingviews.R;
 
 /**
- * Created by zyyoona7 on 2017/6/9.
+ * Created by zyyoona7 on 2017/6/21.
  */
 
-public class RingHeaderView extends FrameLayout implements IHeaderView {
+public class TaobaoHeaderView extends FrameLayout implements IHeaderView {
 
-    private RotateRingLoadingView mLoadingView;
 
-    public RingHeaderView(@NonNull Context context) {
+    private TaobaoLoadingView mLoadingView;
+
+    public TaobaoHeaderView(@NonNull Context context) {
         this(context, null);
     }
 
-    public RingHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public TaobaoHeaderView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
     private void init(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.header_ring, this);
-        mLoadingView = (RotateRingLoadingView) findViewById(R.id.rlv_header);
+        LayoutInflater.from(context).inflate(R.layout.header_taobao, this);
+        mLoadingView = (TaobaoLoadingView) findViewById(R.id.tlv_header);
     }
 
     /**
@@ -53,7 +55,7 @@ public class RingHeaderView extends FrameLayout implements IHeaderView {
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
         if (fraction < 1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
-        }else {
+        } else {
             mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
         }
     }
