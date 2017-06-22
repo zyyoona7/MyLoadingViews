@@ -5,6 +5,7 @@ import android.widget.Button;
 
 import com.zyyoona7.myloadingviews.progress.activity.AliPayActivity;
 import com.zyyoona7.myloadingviews.progress.activity.CircleActivity;
+import com.zyyoona7.myloadingviews.progress.activity.ITHomeActivity;
 import com.zyyoona7.myloadingviews.progress.activity.IndicatorActivity;
 import com.zyyoona7.myloadingviews.progress.activity.RingActivity;
 import com.zyyoona7.myloadingviews.progress.activity.TaobaoActivity;
@@ -15,6 +16,7 @@ public class MainActivity extends BaseActivity {
     private Button mAliPayBtn;
     private Button mTaobaoBtn;
     private Button mCircleBtn;
+    private Button mITHomeBtn;
 
     @Override
     protected int getLayoutID() {
@@ -33,6 +35,7 @@ public class MainActivity extends BaseActivity {
         mAliPayBtn = (Button) findViewById(R.id.btn_alipay);
         mTaobaoBtn = (Button) findViewById(R.id.btn_taobao);
         mCircleBtn = (Button) findViewById(R.id.btn_circle);
+        mITHomeBtn = (Button) findViewById(R.id.btn_it_home);
     }
 
     @Override
@@ -69,6 +72,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 goTo(CircleActivity.class);
+            }
+        });
+
+        mITHomeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(ITHomeActivity.class);
             }
         });
     }

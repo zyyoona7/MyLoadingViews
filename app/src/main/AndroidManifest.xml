@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zyyoona7.myloadingviews">
+          package="com.zyyoona7.myloadingviews">
 
     <application
         android:allowBackup="true"
@@ -19,18 +19,20 @@
              <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
         </activity>
-        <activity android:name=".progress.activity.IndicatorActivity" />
-        <activity android:name=".progress.activity.RingActivity" />
-        <activity android:name=".progress.activity.AliPayActivity" />
+        <activity android:name=".progress.activity.IndicatorActivity"/>
+        <activity android:name=".progress.activity.RingActivity"/>
+        <activity android:name=".progress.activity.AliPayActivity"/>
         <activity android:name=".progress.activity.TestActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".progress.activity.TaobaoActivity" />
-        <activity android:name=".progress.activity.CircleActivity"></activity>
+        <activity android:name=".progress.activity.TaobaoActivity"/>
+        <activity android:name=".progress.activity.CircleActivity"/>
+        <activity android:name=".progress.activity.ITHomeActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -38,4 +38,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="小密圈Loading"/>
+
+    <Button
+        android:id="@+id/btn_it_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IT之家Loading"/>
 </LinearLayout>
