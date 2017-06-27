@@ -10,38 +10,9 @@
 
 
     <Button
-        android:id="@+id/btn_juhua"
+        android:id="@+id/btn_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="菊花Loading"/>
+        android:text="下拉刷新Loading"/>
 
-    <Button
-        android:id="@+id/btn_ring"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="旋转环形Loading"/>
-
-    <Button
-        android:id="@+id/btn_alipay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="支付宝Loading"/>
-
-    <Button
-        android:id="@+id/btn_taobao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="淘宝Loading"/>
-
-    <Button
-        android:id="@+id/btn_circle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="小密圈Loading"/>
-
-    <Button
-        android:id="@+id/btn_it_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="IT之家Loading"/>
 </LinearLayout>

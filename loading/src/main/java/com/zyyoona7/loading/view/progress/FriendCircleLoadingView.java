@@ -1,4 +1,4 @@
-package com.zyyoona7.loading.view.loading;
+package com.zyyoona7.loading.view.progress;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -18,7 +18,7 @@ import com.zyyoona7.loading.view.BaseView;
  * 朋友圈LoadingView
  */
 
-public class FriendCircleLoadingView extends BaseView {
+public class FriendCircleLoadingView extends BaseProgressView {
 
     private Paint mPaint;
 
@@ -33,6 +33,11 @@ public class FriendCircleLoadingView extends BaseView {
     public FriendCircleLoadingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 //        startAnim();
+    }
+
+    @Override
+    protected int setMaxProgress() {
+        return 1080;
     }
 
     @Override
@@ -96,8 +101,12 @@ public class FriendCircleLoadingView extends BaseView {
         float x = getWidth() / 2;
         float y = getHeight() / 2;
         canvas.translate(x, y);
-        //旋转动画
-        canvas.rotate(degree);
+        if (mCurrentMode == MODE_PROGRESS) {
+            //旋转动画
+            canvas.rotate(-mCurrentProgress);
+        } else {
+            canvas.rotate(degree);
+        }
 
         Path path = new Path();
         RectF rectF = new RectF(-(x - space), -(y - space), (x - space), y - space);
@@ -262,12 +271,14 @@ public class FriendCircleLoadingView extends BaseView {
     @Override
     public void startAnim() {
         stopAnim();
+        setMode(MODE_ROTATE);
         startAnim(0, 360, 1000);
     }
 
     @Override
     public void startAnim(long time) {
         stopAnim();
+        setMode(MODE_ROTATE);
         startAnim(0, 360, time);
     }
 
