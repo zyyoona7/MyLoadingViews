@@ -16,6 +16,7 @@ import com.zyyoona7.myloadingviews.R;
 
 /**
  * Created by zyyoona7 on 2017/6/27.
+ * 朋友圈HeaderView
  */
 
 public class FriendCircleHeaderView extends FrameLayout implements IHeaderView {

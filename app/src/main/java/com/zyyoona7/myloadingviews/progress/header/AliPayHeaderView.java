@@ -16,6 +16,7 @@ import com.zyyoona7.myloadingviews.R;
 
 /**
  * Created by zyyoona7 on 2017/6/21.
+ * 支付宝HeaderView
  */
 
 public class AliPayHeaderView extends FrameLayout implements IHeaderView {
@@ -56,7 +57,9 @@ public class AliPayHeaderView extends FrameLayout implements IHeaderView {
         if (fraction <1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
         }else {
-            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            if (mLoadingView.getCurrentProgress()<mLoadingView.getMaxProgress()) {
+                mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            }
         }
     }
 

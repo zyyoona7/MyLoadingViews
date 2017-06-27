@@ -16,6 +16,7 @@ import com.zyyoona7.myloadingviews.R;
 
 /**
  * Created by zyyoona7 on 2017/6/9.
+ * iOS邮件应用HeaderView
  */
 
 public class IndicatorHeaderView extends FrameLayout implements IHeaderView {
@@ -55,10 +56,12 @@ public class IndicatorHeaderView extends FrameLayout implements IHeaderView {
 
     @Override
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
-        if (fraction < 1) {
+        if (fraction <= 1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
-        }else {
-            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+        } else {
+            if (mLoadingView.getCurrentProgress() < mLoadingView.getMaxProgress()) {
+                mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            }
         }
     }
 
@@ -66,8 +69,6 @@ public class IndicatorHeaderView extends FrameLayout implements IHeaderView {
     public void onPullReleasing(float fraction, float maxHeadHeight, float headHeight) {
         if (fraction < 1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
-        }else {
-            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
         }
     }
 

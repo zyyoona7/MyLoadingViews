@@ -7,7 +7,7 @@
                 android:background="#CCCCCC"
                 tools:context="com.zyyoona7.myloadingviews.progress.activity.TestActivity">
 
-    <com.zyyoona7.loading.view.progress.FriendCircleLoadingView
+    <com.zyyoona7.loading.view.progress.uc.UCLoadingView
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerInParent="true"/>

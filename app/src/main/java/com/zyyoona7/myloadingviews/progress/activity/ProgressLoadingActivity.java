@@ -20,6 +20,7 @@ import com.zyyoona7.myloadingviews.progress.header.ITHomeHeaderView;
 import com.zyyoona7.myloadingviews.progress.header.IndicatorHeaderView;
 import com.zyyoona7.myloadingviews.progress.header.RingHeaderView;
 import com.zyyoona7.myloadingviews.progress.header.TaobaoHeaderView;
+import com.zyyoona7.myloadingviews.progress.header.UCHeaderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,10 @@ public class ProgressLoadingActivity extends BaseActivity {
         FriendCircleHeaderView headerView5 = new FriendCircleHeaderView(this);
         mHeaderList.add(headerView5);
         mDataList.add("朋友圈下拉刷新Loading");
+
+        UCHeaderView headerView6 = new UCHeaderView(this);
+        mHeaderList.add(headerView6);
+        mDataList.add("UC浏览器头条下拉刷新Loading");
     }
 
     @Override

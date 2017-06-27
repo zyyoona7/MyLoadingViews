@@ -15,6 +15,7 @@ import com.zyyoona7.myloadingviews.R;
 
 /**
  * Created by zyyoona7 on 2017/6/9.
+ * 腾讯体育HederView
  */
 
 public class RingHeaderView extends FrameLayout implements IHeaderView {
@@ -53,8 +54,10 @@ public class RingHeaderView extends FrameLayout implements IHeaderView {
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
         if (fraction < 1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
-        }else {
-            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+        } else {
+            if (mLoadingView.getCurrentProgress() < mLoadingView.getMaxProgress()) {
+                mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            }
         }
     }
 

@@ -59,6 +59,14 @@ public abstract class BaseProgressView extends BaseView {
     }
 
     /**
+     * 获取当前进度
+     * @return
+     */
+    public int getCurrentProgress() {
+        return mCurrentProgress;
+    }
+
+    /**
      * 获取最大进度
      *
      * @return

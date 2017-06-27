@@ -56,7 +56,9 @@ public class TaobaoHeaderView extends FrameLayout implements IHeaderView {
         if (fraction < 1) {
             mLoadingView.setCurrentProgress(Math.round(fraction * mLoadingView.getMaxProgress()));
         } else {
-            mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            if (mLoadingView.getCurrentProgress() < mLoadingView.getMaxProgress()) {
+                mLoadingView.setCurrentProgress(mLoadingView.getMaxProgress());
+            }
         }
     }
 
