@@ -11,7 +11,8 @@
         android:id="@+id/tfl_indicator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:tr_enable_loadmore="false">
+        app:tr_enable_loadmore="false"
+        android:background="#EEEEEE">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_indicator"

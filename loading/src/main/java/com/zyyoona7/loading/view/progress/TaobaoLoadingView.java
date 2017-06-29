@@ -32,7 +32,7 @@ public class TaobaoLoadingView extends BaseProgressView {
 
     @Override
     protected int setMaxProgress() {
-        return 345;
+        return 330;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class TaobaoLoadingView extends BaseProgressView {
         } else {
             mPaint.setStrokeWidth(dp2px(DEFAULT_PAINT_WIDTH-1));
             canvas.rotate(degree);
-            canvas.drawArc(mRectF, -75, 345, false, mPaint);
+            canvas.drawArc(mRectF, -75, 330, false, mPaint);
         }
     }
 

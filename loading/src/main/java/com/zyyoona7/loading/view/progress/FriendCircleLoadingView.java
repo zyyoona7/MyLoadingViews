@@ -20,9 +20,16 @@ import java.util.List;
 
 public class FriendCircleLoadingView extends BaseProgressView {
 
+    //填充区域数
+    private static final int AREAS_NUMBER = 8;
+    //画布旋转角度
+    private static final int ROTATE_DEGREE = 45;
+
     private Paint mPaint;
     private List<Integer> mColorList;
     private float degree;
+    private int mStrokeColor = Color.WHITE;
+    private int mStrokeWidth = DEFAULT_PAINT_WIDTH;
 
     public FriendCircleLoadingView(Context context) {
         super(context);
@@ -43,7 +50,7 @@ public class FriendCircleLoadingView extends BaseProgressView {
         mPaint.setAntiAlias(true);
         mPaint.setColor(DEFAULT_COLOR);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(dp2px(2));
+        mPaint.setStrokeWidth(dp2px(mStrokeWidth));
         mColorList = new ArrayList<>(8);
         mColorList.add(Color.parseColor("#EE5C42"));
         mColorList.add(Color.parseColor("#9B30FF"));
@@ -72,7 +79,7 @@ public class FriendCircleLoadingView extends BaseProgressView {
         //小圆半径，little radius
         float lr = x / 3;
         //大圆半径，large Radius
-        float lR=x-space;
+        float lR = x - space;
         //内圆与x轴垂直切点，到外圆的距离
         //x*x+y*y=lR*lR -->x=lr
         float dy = (float) Math.sqrt(lR * lR - lr * lr);
@@ -92,9 +99,14 @@ public class FriendCircleLoadingView extends BaseProgressView {
         //保存画布当前状态
         canvas.save();
         //画出8个填充颜色区域
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < AREAS_NUMBER; i++) {
             //取颜色
-            mPaint.setColor(mColorList.get(i));
+            if (i < mColorList.size()) {
+                mPaint.setColor(mColorList.get(i));
+            } else {
+                //如果i>mColorList.size取最后一个颜色填充
+                mPaint.setColor(mColorList.get(mColorList.size() - 1));
+            }
             //重置path
             path.reset();
             //将path移动到小圆左侧，垂直于x轴的切点
@@ -102,33 +114,34 @@ public class FriendCircleLoadingView extends BaseProgressView {
             //连接到小圆垂直于x轴切点到大圆的交点
             path.lineTo(-lr, dy);
             //添加45°的弧度，以填充
-            path.arcTo(rectF, 90, 45);
+            path.arcTo(rectF, 90, ROTATE_DEGREE);
             //连接小圆左侧45°切点到圆的交点
-            path.lineTo(-dx,lr);
+            path.lineTo(-dx, lr);
             //连接小圆左侧45°切点
-            path.lineTo(-cx,-cy);
+            path.lineTo(-cx, -cy);
             //画出填充路径
             canvas.drawPath(path, mPaint);
             //旋转45°
-            canvas.rotate(45);
+            canvas.rotate(ROTATE_DEGREE);
         }
         //恢复之前状态
         canvas.restore();
         //颜色设置为白色
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(mStrokeColor);
+        mPaint.setStrokeWidth(dp2px(mStrokeWidth));
         //设置style为描边
         mPaint.setStyle(Paint.Style.STROKE);
         //保存画布当前状态
         canvas.save();
         //画出8条描边的线
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < AREAS_NUMBER; i++) {
             //重置path
             path.reset();
             //同上
             path.moveTo(-lr, 0);
             path.lineTo(-lr, dy);
             canvas.drawPath(path, mPaint);
-            canvas.rotate(45);
+            canvas.rotate(ROTATE_DEGREE);
         }
         //恢复画布状态
         canvas.restore();
@@ -141,6 +154,39 @@ public class FriendCircleLoadingView extends BaseProgressView {
     @Override
     public void setColor(int color) {
 
+    }
+
+    /**
+     * 设置描边宽度
+     *
+     * @param width
+     */
+    public void setStrokeWidth(int width) {
+        this.mStrokeWidth = width;
+        postInvalidate();
+    }
+
+    /**
+     * 设置描边颜色
+     *
+     * @param color
+     */
+    public void setStrokeColor(int color) {
+        this.mStrokeColor = color;
+        postInvalidate();
+    }
+
+    /**
+     * 设置填充颜色
+     *
+     * @param colors
+     */
+    public void setFillColor(int... colors) {
+        mColorList.clear();
+        for (int i = 0; i < colors.length; i++) {
+            mColorList.add(colors[i]);
+        }
+        postInvalidate();
     }
 
     @Override
