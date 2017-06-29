@@ -16,7 +16,7 @@ import com.zyyoona7.myloadingviews.R;
 
 /**
  * Created by zyyoona7 on 2017/6/21.
- * 支付宝HeaderView
+ * iOS支付宝HeaderView
  */
 
 public class AliPayHeaderView extends FrameLayout implements IHeaderView {

@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 
 /**
  * Created by zyyoona7 on 2017/6/20.
- * 支付宝loadingView，iOS支付宝我的页面下拉刷新效果
+ * iOS支付宝loadingView，iOS支付宝我的页面下拉刷新效果
  */
 
 public class AliPayLoadingView extends BaseProgressView {

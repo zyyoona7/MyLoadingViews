@@ -49,7 +49,7 @@ public class ProgressLoadingActivity extends BaseActivity {
         AliPayHeaderView aliPayHeaderView = new AliPayHeaderView(this);
         aliPayHeaderView.setColor(Color.parseColor("#C5C1AA"), Color.parseColor("#EE4000"));
         mHeaderList.add(aliPayHeaderView);
-        mDataList.add("支付宝下拉刷新Loading");
+        mDataList.add("iOS版支付宝下拉刷新Loading");
 
         CircleHeaderView headerView = new CircleHeaderView(this);
         headerView.setColor(Color.parseColor("#BABABA"));
@@ -59,7 +59,7 @@ public class ProgressLoadingActivity extends BaseActivity {
         IndicatorHeaderView headerView1 = new IndicatorHeaderView(this);
         headerView1.setColor(Color.MAGENTA);
         mHeaderList.add(headerView1);
-        mDataList.add("iOS邮件下拉刷新Loading");
+        mDataList.add("iOS邮件应用下拉刷新Loading");
 
         ITHomeHeaderView headerView2 = new ITHomeHeaderView(this);
         headerView2.setColor(Color.parseColor("#EE0000"));
