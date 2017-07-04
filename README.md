@@ -1,5 +1,5 @@
 # MyLoadingViews
-> Gif图效果一般（尤其是朋友圈Loading /捂脸），大家可以运行看效果
+> Gif图效果一般，运行效果更棒
 
 #### 1. 支付宝下拉刷新Loading
 ![](https://github.com/zyyoona7/MyLoadingViews/blob/master/images/alipay.gif)
