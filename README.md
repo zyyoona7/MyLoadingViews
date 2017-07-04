@@ -18,6 +18,12 @@
 #### 8. UC浏览器头条下拉刷新Loading
 ![](https://github.com/zyyoona7/MyLoadingViews/blob/master/images/uc.gif)
 #### 9.Other
-[快手Android客户端的一个刷新动画](https://github.com/dinuscxj/ShootRefreshView)
-
+[快手Android客户端的一个刷新动画](https://github.com/dinuscxj/ShootRefreshView)</br>
 [支付宝smile Loading](https://github.com/andyxialm/SmileyLoadingView)
+#### 10.Other Loading
+[Nice loading animations for Android](https://github.com/81813780/AVLoadingIndicatorView)</br>
+[简单的带有动画效果的加载控件](https://github.com/ldoublem/LoadingView)</br>
+[高仿新版58 加载动画](https://github.com/zzz40500/android-shapeLoadingView)</br>
+[WaveLoadingView](https://github.com/tangqi92/WaveLoadingView)</br>
+[GABottleLoading](https://github.com/Ajian-studio/GABottleLoading)</br>
+[SlackLoadingView](https://github.com/JeasonWong/SlackLoadingView)
