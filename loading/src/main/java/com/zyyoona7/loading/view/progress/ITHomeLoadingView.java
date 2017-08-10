@@ -72,7 +72,7 @@ public class ITHomeLoadingView extends BaseProgressView {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(dp2px(mStrokeWidth));
         //测量字体边界
-        mRect = new Rect();
+//        mRect = new Rect();
         mMatrix = new Matrix();
         mCamera = new Camera();
     }
@@ -94,8 +94,9 @@ public class ITHomeLoadingView extends BaseProgressView {
             mRect = new Rect();
         }
         mPaint.getTextBounds(mKeyword, 0, mKeyword.length(), mRect);
+        float textWidth=mPaint.measureText(mKeyword);
         //画文字，居中
-        canvas.drawText(mKeyword, (getWidth() - mRect.width()) / 2, (getHeight() - mRect.height()) / 2 + mRect.height(), mPaint);
+        canvas.drawText(mKeyword, (getWidth() - textWidth) / 2, (getHeight() - mRect.height()) / 2 + mRect.height(), mPaint);
 
         if (mCurrentMode == MODE_PROGRESS) {
             //下拉过程
